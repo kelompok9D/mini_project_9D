@@ -247,3 +247,15 @@ def minta_nilai(nama_kolom, numerik, boleh_kosong):
             return teks
         else:
             return teks
+
+def tambah_baris(data, kolom, numerik):
+    baris = {}
+    for k in kolom:
+        baris[k] = ""
+    baris["ID"] = str(id_baru(data))
+    print(f"Data baru akan diberi ID {baris['ID']}.")
+    for k in kolom:
+        if k != "ID":
+            baris[k] = minta_nilai(k, numerik, True)
+    data.append(baris)
+    return baris        
