@@ -395,3 +395,27 @@ def hitung_korelasi(x, y):
     r = pembilang / penyebut
     return r, r * r
 
+def interpretasi_r(r):
+    kuat = r
+    if r < 0:
+        kuat = -r
+
+    if kuat < 0.2:
+        tingkat = "sangat lemah"
+    elif kuat < 0.4:
+        tingkat = "lemah"
+    elif kuat < 0.6:
+        tingkat = "sedang"
+    elif kuat < 0.8:
+        tingkat = "kuat"
+    else:
+        tingkat = "sangat kuat"
+
+    if r > 0:
+        arah = "searah (diskon naik, rating cenderung naik)"
+    elif r < 0:
+        arah = "berlawanan (diskon naik, rating cenderung turun)"
+    else:
+        arah = "tidak ada arah"
+    return f"hubungan {tingkat}, {arah}"
+
