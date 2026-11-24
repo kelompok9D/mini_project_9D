@@ -258,4 +258,37 @@ def tambah_baris(data, kolom, numerik):
         if k != "ID":
             baris[k] = minta_nilai(k, numerik, True)
     data.append(baris)
-    return baris        
+    return baris  
+
+def ubah_baris(baris, kolom, numerik):
+    berubah = False
+    while True:
+        print("\nKolom yang bisa diubah:")
+        for i in range(len(kolom)):
+            if kolom[i] != "ID":
+                isi = baris[kolom[i]]
+                if isi == "":
+                    isi = "(kosong)"
+                print(f"  {i + 1:>2}. {kolom[i]:<22} = {isi}")
+        pilih = input("Nomor kolom yang diubah (Enter = selesai): ").strip()
+        if pilih == "":
+            return berubah
+        try:
+            nomor = int(pilih)
+        except ValueError:
+            print("Nomor tidak valid.")
+            continue
+        if nomor < 1 or nomor > len(kolom) or kolom[nomor - 1] == "ID":
+            print("Nomor tidak valid.")
+            continue
+        nama = kolom[nomor - 1]
+        nilai = minta_nilai(nama, numerik, False)
+        if nilai is None:
+            print("Dibatalkan.")
+            continue
+        lama = baris[nama]
+        baris[nama] = nilai
+        berubah = True
+        if lama == "":
+            lama = "(kosong)"
+        print(f"{nama}: {lama}  ->  {nilai}")      
