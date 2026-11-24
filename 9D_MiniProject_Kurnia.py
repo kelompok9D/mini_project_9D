@@ -164,3 +164,32 @@ def ringkas_validasi(data):
         status = status + " (data_tidak_valid: " + rincian[:-2] + ")"
 
     return x, y, status          
+
+def tampilkan_validasi(data):
+    x, y, masalah = validasi_data(data) 
+    total = len(data)
+    data_tidak_valid = total - len(x)
+
+    print("=" * 50)
+    print("  HASIL VALIDASI DATA")
+    print("=" * 50)
+    print(f"Jumlah baris data : {total}")
+    print("Kolom diperiksa   : Discount_offered, Customer_rating")
+    print("-" * 50)
+    print(f"{'Pemeriksaan':<30}{'Hasil':>12}")
+    for jenis, daftar in masalah.items():
+        print(f"{jenis.capitalize():<30}{len(daftar):>7} baris") #.capitalize ini untuk membuat huruf awal menjadi kapital.
+    print("-" * 50)
+    persen = len(x) / total * 100 if total else 0
+    print(f"Data valid        : {len(x)} baris ({persen:.1f}%)")
+    print(f"Data tidak valid      : {data_tidak_valid} baris")
+
+    if data_tidak_valid > 0:
+        print("\nID baris bermasalah (maks. 5 per jenis):")
+        for jenis, daftar in masalah.items():
+            if daftar:
+                print(f"  - {jenis}: {', '.join(daftar[:5])}") 
+        print("\nStatus            : baris bermasalah data_tidak_valid dari analisis")
+        print("Perbaiki lewat menu 3 (Kelola data).")
+    else:
+        print("\nStatus            : DATA SIAP DIANALISIS")
