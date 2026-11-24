@@ -291,4 +291,26 @@ def ubah_baris(baris, kolom, numerik):
         berubah = True
         if lama == "":
             lama = "(kosong)"
-        print(f"{nama}: {lama}  ->  {nilai}")      
+        print(f"{nama}: {lama}  ->  {nilai}")     
+
+def tampilkan_submenu(jumlah_data, belum_simpan):
+    print()
+    print("-" * 46)
+    print("  KELOLA DATA")
+    print("-" * 46)
+    print(f" Jumlah data saat ini: {jumlah_data} baris")
+    if belum_simpan:
+        print(" (ada perubahan yang BELUM disimpan ke file)")
+    print(" 1. Tambah data baru")
+    print(" 2. Ubah data")
+    print(" 3. Hapus data")
+    print(" 4. Simpan perubahan ke file CSV")
+    print(" 0. Kembali ke menu utama")
+    print("-" * 46)
+
+def info_setelah_perubahan(data):
+    hasil = ringkas_validasi(data)        
+    print(hasil[2])                       
+    print("Perubahan belum tersimpan ke CSV. Pilih 4 untuk menyimpan.")
+
+
