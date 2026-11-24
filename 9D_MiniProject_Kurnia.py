@@ -72,7 +72,7 @@ def baca_dataset(nama_file):
             raise ValueError(f"Kolom {wajib} tidak ditemukan dalam dataset")
     return kolom, data
 
-def simpan_data(nama_file, kolom, data):
+def simpan_dataset(nama_file, kolom, data):
     backup = nama_file.replace(".csv", "") + "_backup.csv"
 
 
@@ -313,4 +313,56 @@ def info_setelah_perubahan(data):
     print(hasil[2])                       
     print("Perubahan belum tersimpan ke CSV. Pilih 4 untuk menyimpan.")
 
+def kelola_data(kolom, data, numerik, file_aktif, belum_simpan):
+    while True:
+        tampilkan_submenu(len(data), belum_simpan)
+        pilihan = input("Mau melakukan apa? ").strip()
+
+        if pilihan == "0":
+            return belum_simpan
+
+        elif pilihan == "1":
+            baris = tambah_baris(data, kolom, numerik)
+            belum_simpan = True
+            print("Data ditambahkan:")
+            tampilkan_satu_baris(baris)
+            info_setelah_perubahan(data)
+
+        elif pilihan == "2":
+            id_cari = input("ID yang diubah: ").strip()
+            baris = cari_berdasarkan_id(data, id_cari)
+            if baris is None:
+                print("ID tidak ditemukan.")
+                continue
+            tampilkan_satu_baris(baris)
+            if ubah_baris(baris, kolom, numerik):
+                belum_simpan = True
+                print("\nData setelah diubah:")
+                tampilkan_satu_baris(baris)
+                info_setelah_perubahan(data)
+
+        elif pilihan == "3":
+            id_cari = input("ID yang dihapus: ").strip()
+            baris = cari_berdasarkan_id(data, id_cari)
+            if baris is None:
+                print("ID tidak ditemukan.")
+                continue
+            tampilkan_satu_baris(baris)
+            jawab = input("Yakin hapus data ini? (y/n): ").strip().lower()
+            if jawab == "y":
+                data.remove(baris)
+                belum_simpan = True
+                print("Data dihapus.")
+                info_setelah_perubahan(data)
+            else:
+                print("Dibatalkan.")
+
+        elif pilihan == "4":
+            backup = simpan_dataset(file_aktif, kolom, data)
+            belum_simpan = False
+            print(f"Tersimpan ke '{file_aktif}' ({len(data)} baris).")
+            print(f"File asli aman di '{backup}'.")
+
+        else:
+            print("Pilihan tidak valid.")
 
