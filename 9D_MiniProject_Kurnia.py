@@ -59,3 +59,51 @@ import os
 import csv
 import shutil
 import math
+
+NAMA_FILE = "e-commerce_csc.csv"
+
+def baca_dataset(nama_file):
+    with open(nama_file, newline="", encoding="utf-8-sig")as file:
+        pembaca = csv.dictreader(file)
+        kolom = pembaca.fieldnames
+        data = list(pembaca)
+    for wajib in ("ID", "DISCOUNT_OFFERED", "CUSTOMER_SATISFACTION"):
+        if wajib not in kolom:
+            raise ValueError(f"Kolom {wajib} tidak ditemukan dalam dataset")
+    return kolom, data
+
+def simpan_data(nama_file, kolom, data):
+    backup = nama_file.replace(".csv", "") + "_backup.csv"
+
+
+    with open(nama_file, "w", newline="", encoding="utf-8-sig") as file:
+        penulis = csv.DictWriter(file, fieldnames=kolom)
+        penulis.writeheader()
+        penulis.writerows(data)
+
+    return backup
+
+KOLOM_WAJIB = ("DISCOUNT_OFFERED", "CUSTOMER_SATISFACTION")
+BATAS_R = 0.2
+
+def cari_kolom_numerik(kolom, data):
+    numerik = list(KOLOM_WAJIB)
+    for nama in kolom:
+        if nama in numerik:
+            continue
+        isi = []
+
+        for b in data:
+            if b[nama].strip() == "":
+                isi.append(b[nama])
+
+        if not isi:
+            continue
+        try:
+            for nilai in isi:
+                float(nilai)
+                numerik.append(nama)
+        except ValueError:
+                pass 
+    return numerik
+          
