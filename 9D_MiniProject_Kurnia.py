@@ -217,3 +217,33 @@ def id_baru(data):
         if id_sekarang > terbesar:
             terbesar = id_sekarang
     return terbesar + 1
+
+def minta_nilai(nama_kolom, numerik, boleh_kosong):
+    while True:
+        if boleh_kosong:
+            teks = input(f"{nama_kolom} (Enter = kosong): ").strip() 
+        else:
+            teks = input(f"{nama_kolom} (Enter = batal): ").strip()
+
+        if teks == "":
+            if boleh_kosong:
+                return ""
+            return None
+
+        if nama_kolom == "Customer_rating":
+            if teks in ["1", "2", "3", "4", "5"]:
+                return teks
+            print("Rating harus bilangan bulat 1 sampai 5.")
+        elif nama_kolom in numerik:
+            teks = teks.replace(",", ".") 
+            try:
+                nilai = float(teks)
+            except ValueError:
+                print(f"{nama_kolom} harus berupa angka.")
+                continue
+            if nama_kolom == "Discount_offered" and nilai < 0:
+                print("Diskon tidak boleh negatif.")
+                continue
+            return teks
+        else:
+            return teks
