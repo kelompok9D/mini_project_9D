@@ -206,3 +206,14 @@ def cari_berdasarkan_id(data, id_cari):
         if baris["ID"] == id_cari:
             return baris
     return None
+
+def id_baru(data):
+    terbesar = 0
+    for baris in data:
+        try:
+            id_sekarang = int(baris["ID"])
+        except ValueError:
+            continue                    
+        if id_sekarang > terbesar:
+            terbesar = id_sekarang
+    return terbesar + 1
