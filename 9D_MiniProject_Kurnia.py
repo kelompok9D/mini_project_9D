@@ -419,3 +419,26 @@ def interpretasi_r(r):
         arah = "tidak ada arah"
     return f"hubungan {tingkat}, {arah}"
 
+def tampilkan_regresi(x, y):
+    n, sx, sy, sxy, sx2, sy2 = hitung_jumlah(x, y)
+    a, b = hitung_regresi(x, y)
+    r, r2 = hitung_korelasi(x, y)
+    print("=" * 50)
+    print("  ANALISIS REGRESI LINEAR SEDERHANA")
+    print("  X = Discount_offered | Y = Customer_rating")
+    print("=" * 50)
+    print(f"n   = {n}")
+    print(f"Σx  = {sx:g}") 
+    print(f"Σy  = {sy:g}")
+    print(f"Σxy = {sxy:g}")
+    print(f"Σx² = {sx2:g}")
+    print(f"Σy² = {sy2:g}")
+    print("-" * 50)
+    print(f"Gradien  (b)     = {b:.6f}") 
+    print(f"Intersep (a)     = {a:.4f}")
+    print(f"Persamaan        : ŷ = {a:.4f} + ({b:.6f}) x")
+    print("-" * 50)
+    print(f"Korelasi (r)     = {r:.4f}")
+    print(f"Determinasi (R²) = {r2 * 100:.4f}%")
+    print(f"Arti             : {interpretasi_r(r)}")
+
