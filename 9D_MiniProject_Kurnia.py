@@ -75,6 +75,9 @@ def baca_dataset(nama_file):
 def simpan_dataset(nama_file, kolom, data):
     backup = nama_file.replace(".csv", "") + "_backup.csv"
 
+    if os.path.exists(nama_file): 
+        if not os.path.exists(backup): 
+            shutil.copyfile(nama_file, backup)
 
     with open(nama_file, "w", newline="", encoding="utf-8-sig") as file:
         penulis = csv.DictWriter(file, fieldnames=kolom)
