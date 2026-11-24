@@ -201,3 +201,8 @@ def tampilkan_satu_baris(baris):
             nilai = "(kosong)"
         print(f"  {nama:<22}: {nilai}")
 
+def cari_berdasarkan_id(data, id_cari):
+    for baris in data:
+        if baris["ID"] == id_cari:
+            return baris
+    return None
