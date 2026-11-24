@@ -366,3 +366,32 @@ def kelola_data(kolom, data, numerik, file_aktif, belum_simpan):
         else:
             print("Pilihan tidak valid.")
 
+def hitung_jumlah(x, y):
+    n = len(x)
+    sx = 0
+    sy = 0
+    sxy = 0
+    sx2 = 0
+    sy2 = 0
+    for i in range(n):
+        sx += x[i]
+        sy += y[i]
+        sxy += x[i] * y[i]
+        sx2 += x[i] * x[i]
+        sy2 += y[i] * y[i]
+    return n, sx, sy, sxy, sx2, sy2
+
+def hitung_regresi(x, y):
+    n, sx, sy, sxy, sx2, sy2 = hitung_jumlah(x, y)
+    b = (n * sxy - sx * sy) / (n * sx2 - sx ** 2)
+    a = (sy - b * sx) / n
+    return a, b
+
+
+def hitung_korelasi(x, y):
+    n, sx, sy, sxy, sx2, sy2 = hitung_jumlah(x, y)
+    pembilang = n * sxy - sx * sy
+    penyebut = math.sqrt((n * sx2 - sx ** 2) * (n * sy2 - sy ** 2))
+    r = pembilang / penyebut
+    return r, r * r
+
