@@ -442,3 +442,11 @@ def tampilkan_regresi(x, y):
     print(f"Determinasi (R²) = {r2 * 100:.4f}%")
     print(f"Arti             : {interpretasi_r(r)}")
 
+def prediksi(a, b, diskon):
+    hasil = a + b * diskon 
+    if hasil > 5.0:
+        hasil = 5.0
+    elif hasil < 1.0:
+        hasil = 1.0
+    return hasil
+
