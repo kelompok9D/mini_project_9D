@@ -193,3 +193,11 @@ def tampilkan_validasi(data):
         print("Perbaiki lewat menu 3 (Kelola data).")
     else:
         print("\nStatus            : DATA SIAP DIANALISIS")
+
+def tampilkan_satu_baris(baris):
+    for nama in baris:
+        nilai = baris[nama]
+        if nilai == "":
+            nilai = "(kosong)"
+        print(f"  {nama:<22}: {nilai}")
+
