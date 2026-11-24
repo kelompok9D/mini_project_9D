@@ -106,4 +106,61 @@ def cari_kolom_numerik(kolom, data):
         except ValueError:
                 pass 
     return numerik
-          
+
+def validasi_data(data): 
+    x = []
+    y = []
+    masalah = {"kosong": [], "bukan angka": [],
+               "diskon negatif": [], "rating di luar 1-5": []}
+
+    for baris in data:
+        id_baris = baris["ID"]
+        diskon_teks = baris["Discount_offered"].strip()
+        rating_teks = baris["Customer_rating"].strip()
+
+        if diskon_teks == "" or rating_teks == "":
+            masalah["kosong"].append(id_baris) 
+            continue
+        try:
+            diskon = float(diskon_teks)
+            rating = float(rating_teks)
+        except ValueError:
+            masalah["bukan angka"].append(id_baris) 
+            continue
+        if diskon < 0:
+            masalah["diskon negatif"].append(id_baris)
+            continue
+        if rating not in (1, 2, 3, 4, 5):
+            masalah["rating di luar 1-5"].append(id_baris)
+            continue
+        x.append(diskon) 
+        y.append(rating)
+    return x, y, masalah
+
+
+def ringkas_validasi(data):
+    x, y, masalah = validasi_data(data)
+
+    status = f"Validasi otomatis: {len(x)} dari {len(data)} baris valid"
+
+    jumlah_kosong = len(masalah["kosong"])
+    jumlah_bukan_angka = len(masalah["bukan angka"])
+    jumlah_diskon_negatif = len(masalah["diskon negatif"])
+    jumlah_rating_salah = len(masalah["rating di luar 1-5"])
+
+    
+    rincian = ""
+    if jumlah_kosong > 0:
+        rincian = rincian + f"{jumlah_kosong} kosong, "
+    if jumlah_bukan_angka > 0:
+        rincian = rincian + f"{jumlah_bukan_angka} bukan angka, "
+    if jumlah_diskon_negatif > 0:
+        rincian = rincian + f"{jumlah_diskon_negatif} diskon negatif, "
+    if jumlah_rating_salah > 0:
+        rincian = rincian + f"{jumlah_rating_salah} rating di luar 1-5, "
+
+    
+    if rincian != "":
+        status = status + " (data_tidak_valid: " + rincian[:-2] + ")"
+
+    return x, y, status          
