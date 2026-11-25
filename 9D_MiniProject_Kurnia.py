@@ -506,3 +506,7 @@ def buat_saran(x, y, a, b, r, r2):
     else:
         saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 sudah baik. "
                      f"Pertahankan kualitas layanan saat ini.")
+
+    saran.append("\n Ulangi analisis ini secara berkala, terutama setelah kebijakan diskon berubah, "
+                 "agar keputusan selalu memakai data terbaru.")
+    return saran
