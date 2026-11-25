@@ -320,14 +320,15 @@ def tampilkan_submenu(jumlah_data, belum_simpan):
     print(" 1. Tambah data baru")
     print(" 2. Ubah data")
     print(" 3. Hapus data")
-    print(" 4. Simpan perubahan ke file CSV")
+    print(" 4. Hapus semua data")
+    print(" 5. Simpan perubahan ke file CSV")
     print(" 0. Kembali ke menu utama")
     print("-" * 46)
 
 def info_setelah_perubahan(data):
     hasil = ringkas_validasi(data)        
     print(hasil[2])                       
-    print("Perubahan belum tersimpan ke CSV. Pilih 4 untuk menyimpan.")
+    print("Perubahan belum tersimpan ke CSV. Pilih 5 untuk menyimpan.")
 
 def kelola_data(kolom, data, numerik, file_aktif, belum_simpan):
     while True:
