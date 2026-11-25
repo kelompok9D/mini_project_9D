@@ -455,6 +455,7 @@ def prediksi(a, b, diskon):
 
 def buat_saran(x, y, a, b, r, r2):
     n = len(x)
+    rata_y = sum(y) / n
     saran = []
     jumlah_kurang = 0
     for yi in y:
@@ -494,3 +495,14 @@ def buat_saran(x, y, a, b, r, r2):
                      "kualitas produk, ketepatan pengiriman, atau harapan pelanggan yang tidak terpenuhi.")
         saran.append("Uji coba batas diskon yang lebih rendah pada sebagian pelanggan, "
                      "lalu bandingkan ratingnya.")
+
+    if rata_y < 3.5:
+        saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 dan {kurang:.1f}% pelanggan "
+                     f"kurang puas (rating 1-2). Jadikan peningkatan kualitas layanan "
+                     f"sebagai prioritas, tanpa menunggu perubahan diskon.")
+    elif rata_y < 4.0:
+        saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 tergolong cukup. "
+                     f"Targetkan peningkatan dengan memperbaiki layanan.")
+    else:
+        saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 sudah baik. "
+                     f"Pertahankan kualitas layanan saat ini.")
