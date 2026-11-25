@@ -468,4 +468,15 @@ def buat_saran(x, y, a, b, r, r2):
     y_max = prediksi(a, b, max(x))
 
     if -BATAS_R < r < BATAS_R:
-        saran.append("jangan mengandalkan diskon, karena jika poin diskon ditambah ")
+        saran.append(f"Jangan cuman mengandalkan diskon untuk menaikkan kepuasan pelanggan, "
+                     f"karena jika menambah diskon 10 poin, hanya akan mengubah rating sebanyak {per_10:+.4f}.")
+        saran.append(f"Prediksi rating pada diskon {max(x):g} "
+                     f"({y_maks:.2f}) nyaris sama dengan pada diskon {min(x):g} "
+                     f"({y_min:.2f}), jadi diskon besar belum terbukti membuat pelanggan lebih puas. "
+                     f"Batasi diskon besar bila tujuannya hanya kepuasan.")
+        saran.append(f"Gunakan diskon untuk tujuan lain, seperti menarik pembeli baru atau menghabiskan stok, "
+                     f"dan ukur hasilnya dengan data penjualan, bukan rating.")
+        saran.append(f"Cari faktor lain yang mempengaruhi kepuasan. Diskon hanya menjelaskan "
+                     f"{r2 * 100:.4f}% variasi rating, sisanya dari faktor lain, misalnya "
+                     f"ketepatan pengiriman, layanan pelanggan, dan kualitas produk. "
+                     f"Jadi, lakukan survei atau kumpulkan komentar pelanggan untuk mengetahui faktor utamanya.")
