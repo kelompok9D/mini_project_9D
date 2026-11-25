@@ -60,7 +60,7 @@ import csv
 import shutil
 import math
 
-NAMA_FILE = "e-commerce_csc.csv"
+NAMA_FILE = "e-commerce_csv.csv"
 NAMA_LAPORAN = "laporan_analisis_diskon.txt"
 
 def baca_dataset(nama_file):
