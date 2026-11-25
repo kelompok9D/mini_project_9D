@@ -480,3 +480,11 @@ def buat_saran(x, y, a, b, r, r2):
                      f"{r2 * 100:.4f}% variasi rating, sisanya dari faktor lain, misalnya "
                      f"ketepatan pengiriman, layanan pelanggan, dan kualitas produk. "
                      f"Jadi, lakukan survei atau kumpulkan komentar pelanggan untuk mengetahui faktor utamanya.")
+    elif r >= BATAS_R:
+        saran.append(f"Diskon dapat dipertahankan sebagai salah satu strategi kepuasan, "
+                     f"karena setiap tambahan diskon 10 poin menaikkan rating sekitar {per_10:+.4f}.")
+        saran.append("Naikkan diskon secara bertahap lalu cek apakah tambahan rating sepadan "
+                     "dengan uang yang hilang dari potongan harga, supaya keuntungan tidak tergerus.")
+        saran.append(f"Jangan hanya bergantung pada diskon. Diskon menjelaskan {r2 * 100:.2f}% "
+                     f"variasi rating, sisanya dari faktor lain yang tetap perlu dibenahi.")
+    
