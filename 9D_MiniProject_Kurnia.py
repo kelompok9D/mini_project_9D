@@ -665,3 +665,14 @@ def jalankan_menu():
                     f.write("\n".join(laporan) + "\n")
                 print(f"Laporan disimpan ke '{NAMA_LAPORAN}'")
             sudah_buka_menu = True
+
+
+def main():
+    while True:
+        if not login():                
+            print("Program ditutup. Terima kasih.")
+            break
+        jalankan_menu()                 
+
+
+main()
