@@ -297,6 +297,18 @@ def ubah_baris(baris, kolom, numerik):
             lama = "(kosong)"
         print(f"{nama}: {lama}  ->  {nilai}")     
 
+def hapus_semua_isi(kolom, data, file_aktif):
+    print(f"\nPERINGATAN: Anda akan menghapus semua isi data di '{file_aktif}'.")
+    print("Hanya baris header (nama kolom) yang tersisa.")
+    jawab = input("Yakin hapus semua data? (y/n): ").strip().lower()
+    if jawab != "y":
+        print("Dibatalkan.")
+        return False
+    data.clear()
+    backup = simpan_dataset(file_aktif, kolom, data)
+    print(f"Semua data dihapus. File asli aman di '{backup}'.")
+    return True
+
 def tampilkan_submenu(jumlah_data, belum_simpan):
     print()
     print("-" * 46)
@@ -362,6 +374,10 @@ def kelola_data(kolom, data, numerik, file_aktif, belum_simpan):
                 print("Dibatalkan.")
 
         elif pilihan == "4":
+            if hapus_semua_isi(kolom, data, file_aktif):
+                belum_simpan = False
+
+        elif pilihan == "5":
             backup = simpan_dataset(file_aktif, kolom, data)
             belum_simpan = False
             print(f"Tersimpan ke '{file_aktif}' ({len(data)} baris).")
