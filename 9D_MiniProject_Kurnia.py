@@ -36,10 +36,9 @@ def buat_cover():
 for a in buat_cover():
     print(a)
 
-
 # login
-USERNAME = "MINIPROJECT9D"
-PASSWORD = "2310931006"
+USERNAME = ("SAYYID NABIL RAMADHAN", "DINARA SAVITRI", "NAJLA MUTIA ADIBA")
+PASSWORD =("2610932039", "2610932027", "2610931008")
 MAKS_PERCOBAAN = 3
 
 def login():
@@ -48,9 +47,10 @@ def login():
         pw = input("Password:")
         sisa = MAKS_PERCOBAAN - percobaan
 
-        if usn == USERNAME and pw == PASSWORD:
-            print("LOGIN BERHASIL")
-            return True 
+        for i in range(len(USERNAME)):
+            if usn == USERNAME[i] and pw == PASSWORD[i]:
+                print("LOGIN BERHASIL")
+                return True
         print(f"Username/Password salah silahkan coba lagi, Sisa Percobaan: {sisa}\n")
 print()
 
@@ -453,3 +453,19 @@ def prediksi(a, b, diskon):
         hasil = 1.0
     return hasil
 
+def buat_saran(x, y, a, b, r, r2):
+    n = len(x)
+    saran = []
+    jumlah_kurang = 0
+    for yi in y:
+        if yi <=2 :
+            jumlah_kurang = jumlah_kurang + 1
+
+    kurang = jumlah_kurang / n * 100
+
+    per_10  = b * 10
+    y_min = prediksi(a, b, min(x))
+    y_max = prediksi(a, b, max(x))
+
+    if -BATAS_R < r < BATAS_R:
+        saran.append("jangan mengandalkan diskon, karena jika poin diskon ditambah ")
