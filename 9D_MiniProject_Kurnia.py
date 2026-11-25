@@ -570,3 +570,16 @@ def buat_laporan(x, y):
     baris.append("")
     baris.append("Catatan: hasil menunjukkan hubungan, bukan sebab-akibat.")
     return baris
+
+def tampilkan_menu():
+    print()
+    print("=" * 46)
+    print("  ANALISIS DISKON vs KEPUASAN PELANGGAN")
+    print("=" * 46)
+    print(" 1. Buka dataset")
+    print(" 2. Validasi")
+    print(" 3. Kelola data (tambah, ubah, hapus, simpan)")
+    print(" 4. Analisis regresi dan korelasi")
+    print(" 5. Laporan, kesimpulan, dan saran")
+    print(" 6. Keluar")
+    print("=" * 46)
