@@ -471,7 +471,7 @@ def buat_saran(x, y, a, b, r, r2):
         saran.append(f"Jangan cuman mengandalkan diskon untuk menaikkan kepuasan pelanggan, "
                      f"karena jika menambah diskon 10 poin, hanya akan mengubah rating sebanyak {per_10:+.4f}.")
         saran.append(f"Prediksi rating pada diskon {max(x):g} "
-                     f"({y_maks:.2f}) nyaris sama dengan pada diskon {min(x):g} "
+                     f"({y_max:.2f}) nyaris sama dengan pada diskon {min(x):g} "
                      f"({y_min:.2f}), jadi diskon besar belum terbukti membuat pelanggan lebih puas. "
                      f"Batasi diskon besar bila tujuannya hanya kepuasan.")
         saran.append(f"Gunakan diskon untuk tujuan lain, seperti menarik pembeli baru atau menghabiskan stok, "
@@ -487,4 +487,10 @@ def buat_saran(x, y, a, b, r, r2):
                      "dengan uang yang hilang dari potongan harga, supaya keuntungan tidak tergerus.")
         saran.append(f"Jangan hanya bergantung pada diskon. Diskon menjelaskan {r2 * 100:.2f}% "
                      f"variasi rating, sisanya dari faktor lain yang tetap perlu dibenahi.")
-    
+    else:
+        saran.append(f"Tinjau kembali strategi diskon. Setiap tambahan diskon 10 poin justru "
+                     f"menurunkan rating sekitar {per_10:+.4f}.")
+        saran.append("Selidiki penyebabnya pada pesanan berdiskon besar, misalnya "
+                     "kualitas produk, ketepatan pengiriman, atau harapan pelanggan yang tidak terpenuhi.")
+        saran.append("Uji coba batas diskon yang lebih rendah pada sebagian pelanggan, "
+                     "lalu bandingkan ratingnya.")
