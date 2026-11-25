@@ -583,3 +583,85 @@ def tampilkan_menu():
     print(" 5. Laporan, kesimpulan, dan saran")
     print(" 6. Keluar")
     print("=" * 46)
+
+def jalankan_menu():
+    kolom = data = None     
+    numerik = []             
+    x = y = None             
+    file_aktif = NAMA_FILE
+    belum_simpan = False    
+    sudah_buka_menu = False  
+
+    while True:
+        tampilkan_menu()
+        if sudah_buka_menu:
+            pilihan = input("Ingin buka menu apa lagi? ").strip()
+        else:
+            pilihan = input("Mau buka menu yang mana? ").strip()
+
+        if pilihan == "1":
+            nama = input(f"Nama file CSV (Enter = {NAMA_FILE}): ").strip() or NAMA_FILE
+            try:
+                kolom, data = baca_dataset(nama)
+                file_aktif = nama
+                numerik = cari_kolom_numerik(kolom, data)
+                belum_simpan = False
+                print(f"Dataset berhasil dibuka: {len(data)} baris, {len(kolom)} kolom")
+                print("Kolom analisis: Discount_offered (X), Customer_rating (Y)")
+                x, y, status = ringkas_validasi(data)    
+                print(status)
+                sudah_buka_menu = True
+            except FileNotFoundError:
+                print(f"File '{nama}' tidak ditemukan.")
+            except KeyError as e:
+                print(f"Kolom {e} tidak ada di file.")
+
+        elif pilihan == "6":
+            if belum_simpan:
+                jawab = input("Ada perubahan yang belum disimpan. "
+                              "Simpan sekarang? (y/n): ").strip().lower()
+                if jawab == "y":
+                    simpan_dataset(file_aktif, kolom, data)
+                    print(f"Tersimpan ke '{file_aktif}'.")
+            print("Anda keluar. Kembali ke halaman login.")
+            return
+
+        elif pilihan not in ("2", "3", "4", "5"):
+            print("Pilihan tidak valid. Pilih angka 1 sampai 6.")
+
+        elif data is None:
+            print("Buka dataset dulu (menu 1).")
+       
+        elif pilihan == "2":
+            tampilkan_validasi(data)
+            sudah_buka_menu = True
+
+        elif pilihan == "3":
+            belum_simpan = kelola_data(kolom, data, numerik, file_aktif, belum_simpan)
+            x, y, _ = ringkas_validasi(data)     
+            sudah_buka_menu = True
+
+        elif len(x) < 2:
+            print("Data valid kurang dari 2 baris, analisis tidak bisa dilakukan.")
+
+        elif pilihan == "4":
+            try:
+                tampilkan_regresi(x, y)
+                sudah_buka_menu = True
+            except ZeroDivisionError:
+                print("Semua nilai diskon (atau rating) sama, regresi tidak bisa dihitung.")
+
+        elif pilihan == "5":
+            try:
+                laporan = buat_laporan(x, y)
+            except ZeroDivisionError: 
+                print("Laporan tidak bisa dibuat: nilai diskon atau rating seragam.")
+                continue
+            print()
+            for garis_laporan in laporan:
+                print(garis_laporan)
+            if input ("\nSimpan laporan ke file? (y/n): ").strip().lower() == "y":
+                with open(NAMA_LAPORAN, "w", encoding="utf-8") as f:
+                    f.write("\n".join(laporan) + "\n")
+                print(f"Laporan disimpan ke '{NAMA_LAPORAN}'")
+            sudah_buka_menu = True
