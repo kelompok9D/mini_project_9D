@@ -65,10 +65,10 @@ NAMA_LAPORAN = "laporan_analisis_diskon.txt"
 
 def baca_dataset(nama_file):
     with open(nama_file, newline="", encoding="utf-8-sig")as file:
-        pembaca = csv.dictreader(file)
+        pembaca = csv.DictReader(file)
         kolom = pembaca.fieldnames
         data = list(pembaca)
-    for wajib in ("ID", "DISCOUNT_OFFERED", "CUSTOMER_SATISFACTION"):
+    for wajib in ("Id", "Discount_offered", "Customer_rating"):
         if wajib not in kolom:
             raise ValueError(f"Kolom {wajib} tidak ditemukan dalam dataset")
     return kolom, data
@@ -87,7 +87,7 @@ def simpan_dataset(nama_file, kolom, data):
 
     return backup
 
-KOLOM_WAJIB = ("DISCOUNT_OFFERED", "CUSTOMER_SATISFACTION")
+KOLOM_WAJIB = ("Discount_offered", "Customer_rating")
 BATAS_R = 0.2
 
 def cari_kolom_numerik(kolom, data):
@@ -118,7 +118,7 @@ def validasi_data(data):
                "diskon negatif": [], "rating di luar 1-5": []}
 
     for baris in data:
-        id_baris = baris["ID"]
+        id_baris = baris["Id"]
         diskon_teks = baris["Discount_offered"].strip()
         rating_teks = baris["Customer_rating"].strip()
 
