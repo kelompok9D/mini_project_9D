@@ -61,6 +61,7 @@ import shutil
 import math
 
 NAMA_FILE = "e-commerce_csc.csv"
+NAMA_LAPORAN = "laporan_analisis_diskon.txt"
 
 def baca_dataset(nama_file):
     with open(nama_file, newline="", encoding="utf-8-sig")as file:
@@ -457,12 +458,12 @@ def buat_saran(x, y, a, b, r, r2):
     n = len(x)
     rata_y = sum(y) / n
     saran = []
-    jumlah_kurang = 0
+    jumlah_kurang_puas = 0
     for yi in y:
         if yi <=2 :
-            jumlah_kurang = jumlah_kurang + 1
+            jumlah_kurang_puas = jumlah_kurang_puas + 1
 
-    kurang = jumlah_kurang / n * 100
+    kurang_puas = jumlah_kurang_puas / n * 100
 
     per_10  = b * 10
     y_min = prediksi(a, b, min(x))
@@ -497,7 +498,7 @@ def buat_saran(x, y, a, b, r, r2):
                      "lalu bandingkan ratingnya.")
 
     if rata_y < 3.5:
-        saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 dan {kurang:.1f}% pelanggan "
+        saran.append(f"Rata-rata rating {rata_y:.2f} dari 5 dan {kurang_puas:.1f}% pelanggan "
                      f"kurang puas (rating 1-2). Jadikan peningkatan kualitas layanan "
                      f"sebagai prioritas, tanpa menunggu perubahan diskon.")
     elif rata_y < 4.0:
@@ -510,3 +511,62 @@ def buat_saran(x, y, a, b, r, r2):
     saran.append("\n Ulangi analisis ini secara berkala, terutama setelah kebijakan diskon berubah, "
                  "agar keputusan selalu memakai data terbaru.")
     return saran
+
+def buat_laporan(x, y):
+    n = len(x)
+    a, b = hitung_regresi(x, y)
+    r, r2 = hitung_korelasi(x, y)
+    jumlah_puas = 0
+    jumlah_kurang_puas = 0
+
+    for nilai in y:
+        if nilai >= 4:
+            jumlah_puas = jumlah_puas + 1
+
+        if nilai <= 2:
+            jumlah_kurang_puas = jumlah_kurang_puas + 1
+
+    puas = jumlah_puas / n * 100
+    kurang_puas = jumlah_kurang_puas / n * 100
+
+    baris = []
+    baris.append("=" * 66)
+    baris.append("  LAPORAN ANALISIS DISKON vs KEPUASAN PELANGGAN")
+    baris.append("  Metode: Regresi Linear Sederhana")
+    baris.append("=" * 66)
+    baris.append("[ 1. Ringkasan data ]")
+    baris.append(f"Jumlah data valid  : {n} pelanggan")
+    baris.append(f"Rentang diskon     : {min(x):g} sampai {max(x):g}")
+    baris.append(f"Rata-rata diskon   : {sum(x) / n:.2f}")
+    baris.append(f"Rata-rata rating   : {sum(y) / n:.2f} (skala 1-5)")
+    baris.append(f"Puas (rating 4-5)  : {puas:.1f}%")
+    baris.append(f"Kurang puas (1-2)  : {kurang_puas:.1f}%")
+    baris.append("")
+    baris.append("[ 2. Hasil regresi linear sederhana ]")
+    baris.append("X = Discount_offered | Y = Customer_rating")
+    baris.append(f"Persamaan        : ŷ = {a:.4f} + ({b:.6f}) x")
+    baris.append(f"Korelasi (r)     : {r:.4f} -> {interpretasi_r(r)}")
+    baris.append(f"Determinasi (R²) : {r2 * 100:.4f}%")
+    baris.append(f"Arti gradien     : tiap diskon naik 10 poin, rating berubah {b * 10:+.4f}")
+    baris.append(f"Prediksi rating  : diskon {min(x):g} -> {prediksi(a, b, min(x)):.2f} | "
+                     f"rata-rata {sum(x) / n:.1f} -> {prediksi(a, b, sum(x) / n):.2f} | "
+                     f"diskon {max(x):g} -> {prediksi(a, b, max(x)):.2f}")
+    baris.append("")
+    baris.append("[ 3. Kesimpulan ]")
+    if -BATAS_R < r < BATAS_R:
+            baris.append("Diskon tidak berpengaruh berarti terhadap kepuasan pelanggan.")
+            baris.append(f"- Korelasi r = {r:.4f} tergolong sangat lemah.")
+            baris.append(f"- Diskon hanya menjelaskan {r2 * 100:.4f}% variasi rating.")
+    elif r > 0:
+            baris.append("Semakin besar diskon, kepuasan pelanggan cenderung naik.")
+            baris.append(f"- Diskon menjelaskan {r2 * 100:.2f}% variasi rating (r = {r:.4f}).")
+    else:
+            baris.append("Semakin besar diskon, kepuasan pelanggan cenderung turun.")
+            baris.append(f"- Diskon menjelaskan {r2 * 100:.2f}% variasi rating (r = {r:.4f}).")
+    baris.append("")
+    baris.append("[ 4. Saran dan rekomendasi untuk perusahaan ]")
+    for no, kalimat in enumerate(buat_saran(x, y, a, b, r, r2), start=1): 
+            baris.append(f"{no}. {kalimat}")
+    baris.append("")
+    baris.append("Catatan: hasil menunjukkan hubungan, bukan sebab-akibat.")
+    return baris
