@@ -68,7 +68,7 @@ def baca_dataset(nama_file):
         pembaca = csv.DictReader(file)
         kolom = pembaca.fieldnames
         data = list(pembaca)
-    for wajib in ("Id", "Discount_offered", "Customer_rating"):
+    for wajib in ("ID", "Discount_offered", "Customer_rating"):
         if wajib not in kolom:
             raise ValueError(wajib)
     return kolom, data
@@ -118,7 +118,7 @@ def validasi_data(data):
                "diskon negatif": [], "rating di luar 1-5": []}
 
     for baris in data:
-        id_baris = baris["Id"]
+        id_baris = baris["ID"]
         diskon_teks = baris["Discount_offered"].strip()
         rating_teks = baris["Customer_rating"].strip()
 
