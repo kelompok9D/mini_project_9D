@@ -70,7 +70,7 @@ def baca_dataset(nama_file):
         data = list(pembaca)
     for wajib in ("Id", "Discount_offered", "Customer_rating"):
         if wajib not in kolom:
-            raise ValueError(f"Kolom {wajib} tidak ditemukan dalam dataset")
+            raise ValueError(wajib)
     return kolom, data
 
 def simpan_dataset(nama_file, kolom, data):
@@ -182,7 +182,7 @@ def tampilkan_validasi(data):
     print("-" * 50)
     print(f"{'Pemeriksaan':<30}{'Hasil':>12}")
     for jenis, daftar in masalah.items():
-        print(f"{jenis.capitalize():<30}{len(daftar):>7} baris") #.capitalize ini untuk membuat huruf awal menjadi kapital.
+        print(f"{jenis.capitalize():<30}{len(daftar):>7} baris")
     print("-" * 50)
     persen = len(x) / total * 100 if total else 0
     print(f"Data valid        : {len(x)} baris ({persen:.1f}%)")
