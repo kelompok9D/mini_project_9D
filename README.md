@@ -85,14 +85,14 @@ variabel yang digunakan dalam program ini ada dua yaitu:
    |Keluar| Menu ini memiliki fungsi untuk kembali ke halaman login dan jika ada perubahan yang belum disimpan, maka program akan menawarkan untuk menyimpannya|
 
    Submenu Kelola Data :
-   1. Tambah Data Baru (ID dibuat otomatis, input divalidasi)
-   2. Ubah Data Berdasarkan ID 
-   3. Hapus Data Berdasarkan ID, dengan Konfirmasi
-   4. Hapus Semua Data (hanya header tersisa) Dengan Konfirmasi
-   5. Simpan Perubahan Ke *File* CSV
-   0. Kembali Ke Menu Utama
+   - Tambah Data Baru (ID dibuat otomatis, input divalidasi)
+   - Ubah Data Berdasarkan ID
+   - Hapus Data Berdasarkan ID, dengan Konfirmasi
+   - Hapus Semua Data (hanya header tersisa) Dengan Konfirmasi
+   - Simpan Perubahan Ke *File* CSV
+   - Kembali Ke Menu Utama
 
-3. Alur Penggunaan yang Disarankan
+4. Alur Penggunaan yang Disarankan
    1. Login
    2. Buka dataset pada menu 1
    3. Validasi data pada menu 2
@@ -100,7 +100,7 @@ variabel yang digunakan dalam program ini ada dua yaitu:
    5. Menampilkan hasil perhitungan data pada menu 4
    6. Menampilkan laporan pada menu 5
   
-4. Keterbatasan Program
+5. Keterbatasan Program
    1. Analisis terkait kepuasan pelanggan haanya menggunakan satu variabel yaitu diskon, sehingga pengaruh lain tidak ikut dihitung.
    2. Hasil menunjukkan hubungan sebab akibat.
    3. Rating Berskala 1 sampai 5.
