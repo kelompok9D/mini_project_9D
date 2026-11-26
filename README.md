@@ -1,5 +1,5 @@
 # HUBUNGAN PENGGUNAAN DISKON DENGAN TINGKAT KEPUASAN PELANGGAN MENGGUNAKAN PYTHON
-program in berbasis Python yang dibuat untuk mengetahui hubungan antara diskon yang diberikan oleh sebuah E-commerce dengan tingkat kepuasan pelanggan sehingga dapat dijadikan salah satu landasan perusahaan untuk mengambil keputusan. 
+program in berbasis Python yang dibuat untuk mengetahui hubungan antara diskon yang diberikan oleh sebuah *e-commerce* dengan tingkat kepuasan pelanggan sehingga dapat dijadikan salah satu landasan perusahaan untuk mengambil keputusan. 
 
 ## Daftar Isi
 - [Latar Belakang](#latar-belakang)
@@ -13,15 +13,15 @@ program in berbasis Python yang dibuat untuk mengetahui hubungan antara diskon y
 - [Tim Pengembang](#tim-pengembang)
 
 ## Latar Belakang
-Pemberian diskon merupakan salah satu strategi bagi sebuah perusahaan E-commerce untuk meningkatkan nilai jual. Namun, belum tentu pemberian diskon itu membuat pelanggan lebih puas. Sebelum itu kita perlu memahami satu hal bahwasannya kepuasan pelanggan dapat dipengaruhi oleh beberapa faktor lain.
+Pemberian diskon merupakan salah satu strategi bagi sebuah perusahaan *e-commerce* untuk meningkatkan nilai jual. Namun, belum tentu pemberian diskon itu membuat pelanggan lebih puas. Sebelum itu kita perlu memahami satu hal bahwasannya kepuasan pelanggan dapat dipengaruhi oleh beberapa faktor lain.
 
 program ini menjawab pertanyaan : Apakah pemberian diskon itu dapat meningkatkan kepuasan pelanggan?
 
 ## Manfaat 
-Program ini memiliki manfaat sebagai salah satu landasan untuk mengambil keputusan bagi sebuah perusahaan e-commerce saat ingin memberikan diskon.
+Program ini memiliki manfaat sebagai salah satu landasan untuk mengambil keputusan bagi sebuah perusahaan *e-commerce* saat ingin memberikan diskon.
 
 ## Tujuan 
-program ini memiliki tujuan untuk mengetahui apakah terdapat hubungan antara besarnya diskon yang diberikan dengan tingkat kepuasan pelanggan berdasarkan dataset e-commerce.
+program ini memiliki tujuan untuk mengetahui apakah terdapat hubungan antara besarnya diskon yang diberikan dengan tingkat kepuasan pelanggan berdasarkan dataset *e-commerce*.
 
 ## Fitur Utama
 |Fitur|Keterangan|
