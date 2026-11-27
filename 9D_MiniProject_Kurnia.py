@@ -8,7 +8,7 @@ ANGGOTA = [("Sayyid Nabil Ramadhan", "2610932039"), ("Dinara Savitri", "26109320
 ASISTEN = "Kurnia Rahmat Illahi"
 DOSEN = "Ikhwan Arief, S.T., M.Sc."
 LABOR = "Laboratorium Sistem informasi dan keputusan"
-DEPARTEMEN = "DEPARTEMEN TEKNIK INDUSRTI"
+DEPARTEMEN = "DEPARTEMEN TEKNIK INDUSTRI"
 FAKULTAS = "FAKULTAS TEKNIK"
 KAMPUS = "UNIVERSITAS ANDALAS"
 TAHUN = "2026"
@@ -98,7 +98,7 @@ def cari_kolom_numerik(kolom, data):
         isi = []
 
         for b in data:
-            if b[nama].strip() == "":
+            if b[nama].strip() != "":  
                 isi.append(b[nama])
 
         if not isi:
@@ -106,8 +106,9 @@ def cari_kolom_numerik(kolom, data):
         try:
             for nilai in isi:
                 float(nilai)
-                numerik.append(nama)
+            numerik.append(nama) 
         except ValueError:
+
                 pass 
     return numerik
 
@@ -195,6 +196,10 @@ def tampilkan_validasi(data):
                 print(f"  - {jenis}: {', '.join(daftar[:5])}") 
         print("\nStatus            : baris bermasalah data_tidak_valid dari analisis")
         print("Perbaiki lewat menu 3 (Kelola data).")
+
+    elif len(x) < 2:               
+        print("\nStatus            : DATA BELUM CUKUP (minimal 2 baris valid)")
+    
     else:
         print("\nStatus            : DATA SIAP DIANALISIS")
 
